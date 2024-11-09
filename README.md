@@ -15,7 +15,7 @@ To use this background effect in your project, follow these steps:
 1. **Include the CDN Link**: Add the following `<script>` tag to your HTML file to include the JavaScript file from the CDN.
 
    ```html
-   <script src="https://cdn.jsdelivr.net/gh/kratuvwxyz/CDN-Gradient-Body@1.0.1/CDN-Gradient-Body.js"></script>
+   <script src="https://cdn.jsdelivr.net/gh/kratuvwxyz/CDN-Gradient-Body@1.0.2/CDN-Gradient-Body.js"></script>
    ```
 
 2. **Add the Overlay Element**: Add a `div` element with the ID `color-overlay` to your HTML file. This element will act as the overlay for the color transitions.
@@ -37,7 +37,7 @@ To use this background effect in your project, follow these steps:
      <div id="color-overlay"></div>
 
      <!-- Include the CDN link here -->
-     <script src="https://cdn.jsdelivr.net/gh/kratuvwxyz/CDN-Gradient-Body@1.0.1/CDN-Gradient-Body.js"></script>
+     <script src="https://cdn.jsdelivr.net/gh/kratuvwxyz/CDN-Gradient-Body@1.0.2/CDN-Gradient-Body.js"></script>
    </body>
    </html>
    ```
