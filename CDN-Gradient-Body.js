@@ -1,5 +1,26 @@
-// JavaScript to cycle through colors and create the transition effect
+// JavaScript to apply CSS and cycle through colors with smooth transitions
 (function () {
+    // Insert CSS styles for the overlay element
+    const style = document.createElement("style");
+    style.textContent = `
+      #color-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transition: background-color 3s ease-in-out;
+        z-index: 0; /* Keeps overlay behind any content */
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Insert the overlay element into the document body
+    const overlay = document.createElement("div");
+    overlay.id = "color-overlay";
+    document.body.appendChild(overlay);
+
+    // Color array for transitions
     const colors = [
       "#8B0000", "#FF4500", "#FFA07A", // Red
       "#D2691E", "#FF8C00", "#FFDAB9", // Orange
@@ -13,10 +34,7 @@
     let colorIndex = 0;
 
     function changeBackgroundColor() {
-      const overlay = document.getElementById("color-overlay");
       overlay.style.backgroundColor = colors[colorIndex];
-
-      // Increment color index and reset to 0 if it exceeds array length
       colorIndex = (colorIndex + 1) % colors.length;
     }
 
@@ -25,4 +43,4 @@
 
     // Initial color set on load
     changeBackgroundColor();
-  })();
+})();
