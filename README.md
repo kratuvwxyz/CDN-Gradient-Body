@@ -15,7 +15,7 @@ To use this background effect in your project, simply add the following `<script
 ### CDN Link
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/kratuvwxyz/CDN-Gradient-Body@1.0.0/CDN-Gradient-Body.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/kratuvwxyz/CDN-Gradient-Body@1.0.1/CDN-Gradient-Body.js"></script>
 ```
 
 ### Example HTML Setup
@@ -34,7 +34,7 @@ Here’s a basic example of how to use this script in an HTML file to get a smoo
   <h1>Enjoy the Smooth Rainbow Colors!</h1>
 
   <!-- Include the CDN link here -->
-  <script src="https://cdn.jsdelivr.net/gh/kratuvwxyz/CDN-Gradient-Body@1.0.0/CDN-Gradient-Body.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/kratuvwxyz/CDN-Gradient-Body@1.0.1/CDN-Gradient-Body.js"></script>
 </body>
 </html>
 ```
