@@ -16,9 +16,7 @@
     document.head.appendChild(style);
 
     // Insert the overlay element into the document body
-    const overlay = document.createElement("div");
-    overlay.id = "color-overlay";
-    document.body.appendChild(overlay);
+    const overlay = document.getElementById("color-overlay");
 
     // Color array for transitions
     const colors = [
