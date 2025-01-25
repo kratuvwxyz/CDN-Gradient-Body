@@ -48,10 +48,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- <meta name="format-detection" content="telephone=no"> -->
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
     <!-- ! just for auto-refresh or redirect use the following meta tag -->
     <!-- <meta http-equiv="refresh" content="61"> -->
     <!-- <meta http-equiv="refresh" content="0; url=http://website.com/" /> -->
@@ -84,38 +81,18 @@
 
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes" />
-    <meta
-      name="application-name"
-      content="Gradient Background by Desaign Studio"
-    />
-    <link
-      rel="icon"
-      sizes="192x192"
-      href="https://desaign.app/clients/cli/images/1x/favicon.ico"
-    />
-    <link
-      rel="shortcut icon"
-      sizes="192x192"
-      href="https://desaign.app/clients/cli/images/1x/favicon.ico"
-    />
+    <meta name="application-name" content="Gradient Background by Desaign Studio" />
+    <link rel="icon" sizes="192x192" href="https://desaign.app/clients/cli/images/1x/favicon.ico" />
+    <link rel="shortcut icon" sizes="192x192" href="https://desaign.app/clients/cli/images/1x/favicon.ico" />
 
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-    <meta
-      name="apple-mobile-web-app-title"
-      content="Gradient Background by Desaign Studio"
-    />
-    <link
-      rel="apple-touch-icon"
-      href="https://desaign.app/clients/cli/images/1x/black.png"
-    />
+    <meta name="apple-mobile-web-app-title" content="Gradient Background by Desaign Studio" />
+    <link rel="apple-touch-icon" href="https://desaign.app/clients/cli/images/1x/black.png" />
 
     <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta
-      name="msapplication-TileImage"
-      content="https://desaign.app/clients/cli/images/1x/blue.png"
-    />
+    <meta name="msapplication-TileImage" content="https://desaign.app/clients/cli/images/1x/blue.png" />
     <meta name="msapplication-TileColor" content="#003355" />
 
     <!-- Color the status bar on mobile devices -->
@@ -128,22 +105,13 @@
     <!-- <meta name="robots" content="noindex, nofollow" /> -->
 
     <!-- Normalize CSS -->
-    <link
-      rel="stylesheet"
-      href="https://desaign.app/clients/cli/css/normalize.css"
-    />
+    <link rel="stylesheet" href="https://desaign.app/clients/cli/css/normalize.css" />
 
     <!-- JQuery -->
-    <script
-      src="https://desaign.app/clients/cli/js/jquery.js"
-      type="text/javascript"
-    ></script>
+    <script src="https://desaign.app/clients/cli/js/jquery.js" type="text/javascript"></script>
 
     <!-- Bootstrap -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Developer CSS -->
     <!-- # -->
@@ -158,29 +126,169 @@
     <![endif]-->
   </head>
 
-  <body>
-    <!-- header -->
-    <!-- # -->
+  <body class="d-flex justify-content-center align-items-center vh-100">
+    <!-- Centered Button -->
+    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#gradientModal">Create Your Gradient</button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="gradientModal" tabindex="-1" aria-labelledby="gradientModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="gradientModalLabel">Customize Your Gradient</h5>
+          </div>
+          <div class="modal-body">
+            <form id="gradientForm">
+              <div class="mb-3">
+                <label class="form-label">Select Colors</label>
+                <div>
+                  <input type="radio" id="presetColors" name="colorOption" value="preset" checked />
+                  <label for="presetColors">Use Preset Colors</label>
+                </div>
+                <div>
+                  <input type="radio" id="customColors" name="colorOption" value="custom" />
+                  <label for="customColors">Choose Your Own Colors</label>
+                </div>
+              </div>
+              <div id="presetColorList" class="mb-3">
+                <label class="form-label">Preset Colors</label>
+                <div class="form-text font-monospace">
+                  "#8B0000" (Dark Red)<br />
+                  "#FF4500" (Dark Orange)<br />
+                  "#FFA500" (Dark Goldenrod (Yellow-Orange))<br />
+                  "#9ACD32" (Dark Yellow-Green)<br />
+                  "#006400" (Dark Green)<br />
+                  "#4682B4" (Dark Blue)<br />
+                  "#483D8B" (Dark Slate Blue)<br />
+                  "#8A2BE2" (Dark Violet)<br />
+                  "#800080" (Dark Purple)<br />
+                  "#FF1493" (Deep Pink)
+                </div>
+              </div>
+              <div id="customColorPicker" class="mb-3 d-none">
+                <label for="colorPicker" class="form-label">Select Up to 10 Colors</label>
+                <div id="colorInputs">
+                  <!-- 10 color inputs dynamically generated by JS -->
+                </div>
+                <button type="button" class="btn btn-secondary mt-2" id="addColor">Add Color</button>
+              </div>
+              <hr />
+              <div class="mb-3">
+                <label for="intervalTime" class="form-label">Transition Time (in seconds)</label>
+                <small>between two colors</small>
+                <input type="number" class="form-control" id="intervalTime" placeholder="Enter time in seconds" min="1" required />
+              </div>
+              <hr />
+              <div class="mb-3">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked />
+                  <label class="form-check-label" for="defaultCheck1"> Change Text Color (Black or White)</label>
+                  <small>based on background color's contrast</small>
+                </div>
+              </div>
+              <hr />
+              <div class="mb-3">
+                <label for="groupInlineRadioBtn"> Texture: </label>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio0" value="0" checked />
+                  <label class="form-check-label" for="inlineRadio1">None</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" />
+                  <label class="form-check-label" for="inlineRadio1">Dots</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2" />
+                  <label class="form-check-label" for="inlineRadio1">Lines</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3" />
+                  <label class="form-check-label" for="inlineRadio1">Stars</label>
+                </div>
+              </div>
+              <hr />
+              <button type="button" class="btn btn-success w-100" id="generateGradient">Generate Gradient</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Show Code Modal -->
+    <div class="modal fade bd-example-modal-lg" id="showCodeModal" tabindex="-1" role="dialog" aria-labelledby="showCode" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Copy Your JavaScript Code</h5>
+          </div>
+          <div class="modal-body"><p id="showCode" class="font-monospace font-small"></p></div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Footer -->
-    <nav
-      class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark mt-5 ps-3"
-    >
-      <a
-        class="navbar-brand"
-        href="https://desaign.app"
-        target="_blank"
-        style="font-size: 1rem !important"
-        >POWERED BY <span class="text-warning">DESAIGN.STUDIO</span></a
-      >
+    <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark mt-5 ps-3">
+      <a class="navbar-brand" href="https://desaign.app" target="_blank" style="font-size: 1rem !important">POWERED BY <span class="text-warning">DESAIGN.STUDIO</span></a>
     </nav>
 
     <!-- Bootstrap and JS Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Developer JavaScripts -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const presetColors = ["#8B0000", "#FF4500", "#FFA500", "#9ACD32", "#006400", "#4682B4", "#483D8B", "#8A2BE2", "#800080", "#FF1493"];
+        const colorInputsContainer = document.getElementById("colorInputs");
+
+        document.getElementById("customColors").addEventListener("change", () => {
+          document.getElementById("presetColorList").classList.add("d-none");
+          document.getElementById("customColorPicker").classList.remove("d-none");
+        });
+
+        document.getElementById("presetColors").addEventListener("change", () => {
+          document.getElementById("presetColorList").classList.remove("d-none");
+          document.getElementById("customColorPicker").classList.add("d-none");
+        });
+
+        document.getElementById("addColor").addEventListener("click", () => {
+          if (colorInputsContainer.children.length < 10) {
+            const colorInput = document.createElement("input");
+            colorInput.type = "color";
+            colorInput.className = "form-control mb-2";
+            colorInputsContainer.appendChild(colorInput);
+          } else {
+            alert("You can only select up to 10 colors.");
+          }
+        });
+
+        document.getElementById("generateGradient").addEventListener("click", function () {
+          const intervalTime = document.getElementById("intervalTime").value;
+          const textureValue = document.getElementById("");
+          let colors = [];
+
+          if (document.getElementById("presetColors").checked) {
+            colors = presetColors;
+          } else {
+            const customColors = colorInputsContainer.querySelectorAll('input[type="color"]');
+            customColors.forEach((input) => colors.push(input.value));
+          }
+
+          const gradientModal = bootstrap.Modal.getInstance(document.getElementById('gradientModal'));
+          gradientModal.hide();
+
+          const resultModal = new bootstrap.Modal(document.getElementById("showCodeModal"));
+          resultModal.show();
+
+          document.getElementById("showCode").textContent = `!function(){function n(n){const e=function(n){const e=function(n){const e=parseInt(n.slice(1),16);return{r:e>>16&255,g:e>>8&255,b:255&e}}(n);return(299*e.r+587*e.g+114*e.b)/1e3<128}(n)?"#FFFFFF":"#000000";document.getElementById("color-overlay").style.color=e}const e=document.createElement("style");e.textContent="\n#color-overlay {\ntransition: background-color ${intervalTime}s ease-in-out, color ${intervalTime}s ease-in-out;\n}\n",document.head.appendChild(e);const t=document.getElementById("color-overlay"),o=["${colors.join('", "')}"];let c=0;function r(){t.style.backgroundColor=o[c],n(o[c]),c=(c+1)%o.length}setInterval(r,${intervalTime}e3),r()}();`;
+        });
+      });
+    </script>
     <!-- # -->
 
     <!-- Desaign Loader -->
-    <script src="https://desaign.app/clients/cli/javascript/desaign-loader/desaign-loader2.js"></script>
+    <!-- <script src="https://desaign.app/clients/cli/javascript/desaign-loader/desaign-loader2.js"></script> -->
   </body>
 </html>
