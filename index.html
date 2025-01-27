@@ -221,13 +221,13 @@
                 </div>
                 <button type="button" class="btn btn-secondary mt-2" id="addColor">Add Color</button>
               </div>
-              <hr style="border: 2px double #000;" />
+              <hr style="border: 2px double #000" />
               <div class="mb-3">
                 <label for="intervalTime" class="form-label">Transition Time (in seconds)</label>
                 <small>between two colors</small>
                 <input type="number" class="form-control" id="intervalTime" placeholder="Enter time in seconds" min="1" required oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
               </div>
-              <hr style="border: 2px double #000;" />
+              <hr style="border: 2px double #000" />
               <div class="mb-3">
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" value="true" name="typecolor" id="defaultCheck1" />
@@ -235,7 +235,7 @@
                   <small>based on background color's contrast</small>
                 </div>
               </div>
-              <hr style="border: 2px double #000;" />
+              <hr style="border: 2px double #000" />
               <div class="mb-3">
                 <label for="groupInlineRadioBtn"> Texture: </label>
                 <div class="form-check form-check-inline">
@@ -255,7 +255,7 @@
                   <label class="form-check-label" for="inlineRadio1">Stars</label>
                 </div>
               </div>
-              <hr style="border: 2px double #000;" />
+              <hr style="border: 2px double #000" />
               <button type="button" class="btn btn-success w-100" id="generateGradient">Generate Gradient</button>
             </form>
           </div>
@@ -375,7 +375,7 @@
           const resultModal = new bootstrap.Modal(document.getElementById("showCodeModal"));
           resultModal.show();
 
-          const x = `!function(){function n(n){const e=function(n){const e=function(n){const e=parseInt(n.slice(1),16);return{r:(e>>16)&255,g:(e>>8)&255,b:255&e}}(n);return(299*e.r+587*e.g+114*e.b)/1e3<128}(n)?"#FFFFFF":"#000000";document.getElementById("color-overlay").style.color=e}const e=document.createElement("style");e.textContent=\`#color-overlay{transition:background-color ${intervalTime}s ease-in-out,color ${intervalTime}s ease-in-out;}\`,document.head.appendChild(e);const t=document.getElementById("color-overlay"),o=[${colors.map((color) => `"${color}"`).join(",")}];let c=0;function r(){t.style.backgroundColor=o[c],t.style.backgroundImage=\`url("${textureValue}")\`,${checkboxValue}?n(o[c]):n(o[0]),c=(c+1)%o.length}setInterval(r,${intervalTime}*1e3),r()}();`;
+          const x = `!function(){function n(n){const e=function(n){const e=function(n){const e=parseInt(n.slice(1),16);return{r:(e>>16)&255,g:(e>>8)&255,b:255&e}}(n);return(299*e.r+587*e.g+114*e.b)/1e3<128}(n)?"#FFFFFF":"#000000";document.getElementById("color-overlay").style.color=e};const e=document.createElement("style");e.textContent=\`#color-overlay{transition:background-color ${intervalTime}s ease-in-out,color ${intervalTime}s ease-in-out;}\`,document.head.appendChild(e);const t=document.getElementById("color-overlay"),o=[${colors.map((color) => `"${color}"`).join(",")}];let c=0;function r(){t.style.backgroundColor=o[c],t.style.backgroundImage=\`url("${textureValue}")\`,${checkboxValue}?n(o[c]):n(o[0]),c=(c+1)%o.length}setInterval(r,${intervalTime}*1e3),r()}();`;
 
           document.getElementById("showCode").textContent = x;
 
@@ -401,12 +401,7 @@
       });
     </script>
     <!-- # -->
-
-    <script>
-      !function(){function n(n){const e=function(n){const e=function(n){const e=parseInt(n.slice(1),16);return{r:(e>>16)&255,g:(e>>8)&255,b:255&e}}(n);return(299*e.r+587*e.g+114*e.b)/1e3<128}(n)?"#FFFFFF":"#000000";document.getElementById("color-overlay").style.color=e}const e=document.createElement("style");e.textContent=`#color-overlay{transition:background-color 20s ease-in-out,color 20s ease-in-out;}`,document.head.appendChild(e);const t=document.getElementById("color-overlay"),o=["#FFB6C1","#FFDAB9","#FFFFE0","#98FB98","#ADD8E6","#E0FFFF","#DDA0DD","#FFCCE5","#FFDDC1","#E6E6FA"];let c=0;function r(){t.style.backgroundColor=o[c],t.style.backgroundImage=`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='%23000000' fill-opacity='.25'%3E%3Cpolygon fill-rule='evenodd' points='8 4 12 6 8 8 6 12 4 8 0 6 4 4 6 0 8 4'/%3E%3C/g%3E%3C/svg%3E")`,false?n(o[c]):n(o[0]),c=(c+1)%o.length}setInterval(r,20*1e3),r()}();
-    </script>
-
     <!-- Desaign Loader -->
-    <!-- <script src="https://desaign.app/clients/cli/javascript/desaign-loader/desaign-loader2.js"></script> -->
+    <script src="https://desaign.app/clients/cli/javascript/desaign-loader/desaign-loader2.js"></script>
   </body>
 </html>
