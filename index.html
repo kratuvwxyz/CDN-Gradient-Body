@@ -126,16 +126,16 @@
     <![endif]-->
   </head>
 
-  <body class="d-flex justify-content-center align-items-center vh-100">
+  <body class="d-flex justify-content-center align-items-center vh-100" id="color-overlay">
     <!-- Centered Button -->
-    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#gradientModal">Create Your Gradient</button>
+    <button type="button" class="btn btn-dark btn-lg mb-5" data-bs-toggle="modal" data-bs-target="#gradientModal">Create Your Gradient</button>
 
     <!-- Modal -->
-    <div class="modal fade" id="gradientModal" tabindex="-1" aria-labelledby="gradientModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
+    <div class="modal fade text-dark" id="gradientModal" tabindex="-1" aria-labelledby="gradientModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="gradientModalLabel">Customize Your Gradient</h5>
+            <h5 class="modal-title text-dark" id="gradientModalLabel">Customize Your Gradient Transition</h5>
           </div>
           <div class="modal-body">
             <form id="gradientForm">
@@ -146,6 +146,14 @@
                   <label for="presetColors">Use Preset Colors</label>
                 </div>
                 <div>
+                  <input type="radio" id="presetDarkColors" name="colorOption" value="presetDark" />
+                  <label for="presetColors">Use Preset Dark Colors</label>
+                </div>
+                <div>
+                  <input type="radio" id="presetLightColors" name="colorOption" value="presetLight" />
+                  <label for="presetColors">Use Preset Light Colors</label>
+                </div>
+                <div>
                   <input type="radio" id="customColors" name="colorOption" value="custom" />
                   <label for="customColors">Choose Your Own Colors</label>
                 </div>
@@ -153,16 +161,57 @@
               <div id="presetColorList" class="mb-3">
                 <label class="form-label">Preset Colors</label>
                 <div class="form-text font-monospace">
-                  "#8B0000" (Dark Red)<br />
-                  "#FF4500" (Dark Orange)<br />
-                  "#FFA500" (Dark Goldenrod (Yellow-Orange))<br />
-                  "#9ACD32" (Dark Yellow-Green)<br />
-                  "#006400" (Dark Green)<br />
-                  "#4682B4" (Dark Blue)<br />
-                  "#483D8B" (Dark Slate Blue)<br />
-                  "#8A2BE2" (Dark Violet)<br />
-                  "#800080" (Dark Purple)<br />
-                  "#FF1493" (Deep Pink)
+                  #8B0000 - Dark Red <br />
+                  #FF4500 - Orange Red <br />
+                  #FFA07A - Light Salmon <br />
+                  #D2691E - Chocolate <br />
+                  #FF8C00 - Dark Orange <br />
+                  #FFDAB9 - Peach Puff <br />
+                  #B8860B - Dark Goldenrod <br />
+                  #FFD700 - Gold <br />
+                  #FFFACD - Lemon Chiffon <br />
+                  #006400 - Dark Green <br />
+                  #32CD32 - Lime Green <br />
+                  #98FB98 - Pale Green <br />
+                  #00008B - Dark Blue <br />
+                  #1E90FF - Dodger Blue <br />
+                  #87CEFA - Light Sky Blue <br />
+                  #4B0082 - Indigo <br />
+                  #6A5ACD - Slate Blue <br />
+                  #B0C4DE - Light Steel Blue <br />
+                  #8A2BE2 - Blue Violet <br />
+                  #DA70D6 - Orchid <br />
+                  #E6E6FA - Lavender <br />
+                </div>
+              </div>
+              <div id="presetDarkColorList" class="mb-3 d-none">
+                <label class="form-label">Preset Dark Colors</label>
+                <div class="form-text font-monospace">
+                  #8B0000 - Dark Red <br />
+                  #FF4500 - Dark Orange <br />
+                  #FFA500 - Dark Goldenrod (Yellow-Orange) <br />
+                  #9ACD32 - Dark Yellow-Green <br />
+                  #006400 - Dark Green <br />
+                  #4682B4 - Dark Blue <br />
+                  #483D8B - Dark Slate Blue <br />
+                  #8A2BE2 - Dark Violet <br />
+                  #800080 - Dark Purple <br />
+                  #FF1493 - Deep Pink <br />
+                </div>
+              </div>
+              <div id="presetLightColorList" class="mb-3 d-none">
+                <label class="form-label">Preset Light Colors</label>
+                <div class="form-text font-monospace">
+                  #FFB6C1 - Light Pink <br />
+                  #FFDAB9 - Peach Puff (Light Orange) <br />
+                  #FFFFE0 - Light Yellow <br />
+                  #98FB98 - Pale Green <br />
+                  #ADD8E6 - Light Blue <br />
+                  #E0FFFF - Light Cyan <br />
+                  #DDA0DD - Plum (Light Purple) <br />
+                  #FFCCE5 - Light Rose Pink <br />
+                  #FFDDC1 - Light Coral (Peach) <br />
+                  #E6E6FA - Lavender <br />
                 </div>
               </div>
               <div id="customColorPicker" class="mb-3 d-none">
@@ -172,21 +221,21 @@
                 </div>
                 <button type="button" class="btn btn-secondary mt-2" id="addColor">Add Color</button>
               </div>
-              <hr />
+              <hr style="border: 2px double #000;" />
               <div class="mb-3">
                 <label for="intervalTime" class="form-label">Transition Time (in seconds)</label>
                 <small>between two colors</small>
-                <input type="number" class="form-control" id="intervalTime" placeholder="Enter time in seconds" min="1" required />
+                <input type="number" class="form-control" id="intervalTime" placeholder="Enter time in seconds" min="1" required oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
               </div>
-              <hr />
+              <hr style="border: 2px double #000;" />
               <div class="mb-3">
                 <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" checked />
+                  <input class="form-check-input" type="checkbox" value="true" name="typecolor" id="defaultCheck1" />
                   <label class="form-check-label" for="defaultCheck1"> Change Text Color (Black or White)</label>
                   <small>based on background color's contrast</small>
                 </div>
               </div>
-              <hr />
+              <hr style="border: 2px double #000;" />
               <div class="mb-3">
                 <label for="groupInlineRadioBtn"> Texture: </label>
                 <div class="form-check form-check-inline">
@@ -206,7 +255,7 @@
                   <label class="form-check-label" for="inlineRadio1">Stars</label>
                 </div>
               </div>
-              <hr />
+              <hr style="border: 2px double #000;" />
               <button type="button" class="btn btn-success w-100" id="generateGradient">Generate Gradient</button>
             </form>
           </div>
@@ -215,16 +264,18 @@
     </div>
 
     <!-- Show Code Modal -->
-    <div class="modal fade bd-example-modal-lg" id="showCodeModal" tabindex="-1" role="dialog" aria-labelledby="showCode" aria-hidden="true">
+    <div class="modal fade bd-example-modal-lg text-dark" id="showCodeModal" tabindex="-1" role="dialog" aria-labelledby="showCode" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Copy Your JavaScript Code</h5>
           </div>
-          <div class="modal-body"><p id="showCode" class="font-monospace font-small"></p></div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+          <div class="modal-body">
+            <pre class="bg-light p-3 rounded border"><code id="showCode"></code></pre>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="copyButton">Copy Code</button>
+            </div>
           </div>
         </div>
       </div>
@@ -240,16 +291,36 @@
     <!-- Developer JavaScripts -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const presetColors = ["#8B0000", "#FF4500", "#FFA500", "#9ACD32", "#006400", "#4682B4", "#483D8B", "#8A2BE2", "#800080", "#FF1493"];
+        const presetColors = ["#8B0000", "#FF4500", "#FFA07A", "#D2691E", "#FF8C00", "#FFDAB9", "#B8860B", "#FFD700", "#FFFACD", "#006400", "#32CD32", "#98FB98", "#00008B", "#1E90FF", "#87CEFA", "#4B0082", "#6A5ACD", "#B0C4DE", "#8A2BE2", "#DA70D6", "#E6E6FA"];
+        const presetDarkColors = ["#8B0000", "#FF4500", "#FFA500", "#9ACD32", "#006400", "#4682B4", "#483D8B", "#8A2BE2", "#800080", "#FF1493"];
+        const presetLightColors = ["#FFB6C1", "#FFDAB9", "#FFFFE0", "#98FB98", "#ADD8E6", "#E0FFFF", "#DDA0DD", "#FFCCE5", "#FFDDC1", "#E6E6FA"];
         const colorInputsContainer = document.getElementById("colorInputs");
 
         document.getElementById("customColors").addEventListener("change", () => {
           document.getElementById("presetColorList").classList.add("d-none");
+          document.getElementById("presetDarkColorList").classList.add("d-none");
+          document.getElementById("presetLightColorList").classList.add("d-none");
           document.getElementById("customColorPicker").classList.remove("d-none");
         });
 
         document.getElementById("presetColors").addEventListener("change", () => {
           document.getElementById("presetColorList").classList.remove("d-none");
+          document.getElementById("presetDarkColorList").classList.add("d-none");
+          document.getElementById("presetLightColorList").classList.add("d-none");
+          document.getElementById("customColorPicker").classList.add("d-none");
+        });
+
+        document.getElementById("presetDarkColors").addEventListener("change", () => {
+          document.getElementById("presetColorList").classList.add("d-none");
+          document.getElementById("presetDarkColorList").classList.remove("d-none");
+          document.getElementById("presetLightColorList").classList.add("d-none");
+          document.getElementById("customColorPicker").classList.add("d-none");
+        });
+
+        document.getElementById("presetLightColors").addEventListener("change", () => {
+          document.getElementById("presetColorList").classList.add("d-none");
+          document.getElementById("presetDarkColorList").classList.add("d-none");
+          document.getElementById("presetLightColorList").classList.remove("d-none");
           document.getElementById("customColorPicker").classList.add("d-none");
         });
 
@@ -265,28 +336,75 @@
         });
 
         document.getElementById("generateGradient").addEventListener("click", function () {
-          const intervalTime = document.getElementById("intervalTime").value;
-          const textureValue = document.getElementById("");
+          const intervalTime = document.getElementById("intervalTime").value ? document.getElementById("intervalTime").value : 15;
+          let textureValue = "";
+          let checkboxValue = true;
           let colors = [];
+
+          const selectRadio = document.querySelector('input[name="inlineRadioOptions"]:checked').value;
+          const selectCheck = document.querySelector('input[name="typecolor"]:checked');
+          if (selectCheck) {
+            checkboxValue = true;
+          } else {
+            checkboxValue = false;
+          }
+          if (selectRadio === "1") {
+            textureValue = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' fill-opacity='0.5' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E";
+          } else if (selectRadio === "2") {
+            textureValue = "data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='.5' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E";
+          } else if (selectRadio === "3") {
+            textureValue = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='%23000000' fill-opacity='.25'%3E%3Cpolygon fill-rule='evenodd' points='8 4 12 6 8 8 6 12 4 8 0 6 4 4 6 0 8 4'/%3E%3C/g%3E%3C/svg%3E";
+          } else {
+            textureValue = "";
+          }
 
           if (document.getElementById("presetColors").checked) {
             colors = presetColors;
+          } else if (document.getElementById("presetDarkColors").checked) {
+            colors = presetDarkColors;
+          } else if (document.getElementById("presetLightColors").checked) {
+            colors = presetLightColors;
           } else {
             const customColors = colorInputsContainer.querySelectorAll('input[type="color"]');
             customColors.forEach((input) => colors.push(input.value));
           }
 
-          const gradientModal = bootstrap.Modal.getInstance(document.getElementById('gradientModal'));
+          const gradientModal = bootstrap.Modal.getInstance(document.getElementById("gradientModal"));
           gradientModal.hide();
 
           const resultModal = new bootstrap.Modal(document.getElementById("showCodeModal"));
           resultModal.show();
 
-          document.getElementById("showCode").textContent = `!function(){function n(n){const e=function(n){const e=function(n){const e=parseInt(n.slice(1),16);return{r:e>>16&255,g:e>>8&255,b:255&e}}(n);return(299*e.r+587*e.g+114*e.b)/1e3<128}(n)?"#FFFFFF":"#000000";document.getElementById("color-overlay").style.color=e}const e=document.createElement("style");e.textContent="\n#color-overlay {\ntransition: background-color ${intervalTime}s ease-in-out, color ${intervalTime}s ease-in-out;\n}\n",document.head.appendChild(e);const t=document.getElementById("color-overlay"),o=["${colors.join('", "')}"];let c=0;function r(){t.style.backgroundColor=o[c],n(o[c]),c=(c+1)%o.length}setInterval(r,${intervalTime}e3),r()}();`;
+          const x = `!function(){function n(n){const e=function(n){const e=function(n){const e=parseInt(n.slice(1),16);return{r:(e>>16)&255,g:(e>>8)&255,b:255&e}}(n);return(299*e.r+587*e.g+114*e.b)/1e3<128}(n)?"#FFFFFF":"#000000";document.getElementById("color-overlay").style.color=e}const e=document.createElement("style");e.textContent=\`#color-overlay{transition:background-color ${intervalTime}s ease-in-out,color ${intervalTime}s ease-in-out;}\`,document.head.appendChild(e);const t=document.getElementById("color-overlay"),o=[${colors.map((color) => `"${color}"`).join(",")}];let c=0;function r(){t.style.backgroundColor=o[c],t.style.backgroundImage=\`url("${textureValue}")\`,${checkboxValue}?n(o[c]):n(o[0]),c=(c+1)%o.length}setInterval(r,${intervalTime}*1e3),r()}();`;
+
+          document.getElementById("showCode").textContent = x;
+
+          document.getElementById("copyButton").addEventListener("click", function () {
+            // Get the text content of the code snippet
+            const codeSnippet = x;
+
+            // Use the Clipboard API to copy text
+            navigator.clipboard
+              .writeText(codeSnippet)
+              .then(() => {
+                document.getElementById("copyButton").textContent = "Code Copied";
+                document.getElementById("copyButton").style.backgroundColor = "#00ff00";
+                document.getElementById("copyButton").style.color = "#000000";
+              })
+              .catch((err) => {
+                document.getElementById("copyButton").textContent = "Failed To Copy";
+                document.getElementById("copyButton").style.backgroundColor = "#ff0000";
+                document.getElementById("copyButton").style.color = "#ffffff";
+              });
+          });
         });
       });
     </script>
     <!-- # -->
+
+    <script>
+      !function(){function n(n){const e=function(n){const e=function(n){const e=parseInt(n.slice(1),16);return{r:(e>>16)&255,g:(e>>8)&255,b:255&e}}(n);return(299*e.r+587*e.g+114*e.b)/1e3<128}(n)?"#FFFFFF":"#000000";document.getElementById("color-overlay").style.color=e}const e=document.createElement("style");e.textContent=`#color-overlay{transition:background-color 20s ease-in-out,color 20s ease-in-out;}`,document.head.appendChild(e);const t=document.getElementById("color-overlay"),o=["#FFB6C1","#FFDAB9","#FFFFE0","#98FB98","#ADD8E6","#E0FFFF","#DDA0DD","#FFCCE5","#FFDDC1","#E6E6FA"];let c=0;function r(){t.style.backgroundColor=o[c],t.style.backgroundImage=`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='%23000000' fill-opacity='.25'%3E%3Cpolygon fill-rule='evenodd' points='8 4 12 6 8 8 6 12 4 8 0 6 4 4 6 0 8 4'/%3E%3C/g%3E%3C/svg%3E")`,false?n(o[c]):n(o[0]),c=(c+1)%o.length}setInterval(r,20*1e3),r()}();
+    </script>
 
     <!-- Desaign Loader -->
     <!-- <script src="https://desaign.app/clients/cli/javascript/desaign-loader/desaign-loader2.js"></script> -->
