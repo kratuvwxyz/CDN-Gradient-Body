@@ -1,5 +1,36 @@
+##############################################################################################
+##############################################################################################
+# LOCAL DEVELOPMENT
+##############################################################################################
+##############################################################################################
+# Ignore all ._* files
+._*
+
+*.env
+*.dev
+.DS_Store
+
+# Docker
+Dockerfile
+docker-compose.yml
+
+# Test
+0HN0/
+# find . -type f -name '._*' -delete
+# git rm -r --cached .
+
+# To Do Tasks
+# requestLog.todo
+
+# If Not For Public
+robots.txt
+manifest.webapp
+manifest.json
+humans.txt
+dictionary.md
+
+# SASS CSS
 .sass-cache/
 *.css.map
 *.sass.map
 *.scss.map
-._*
