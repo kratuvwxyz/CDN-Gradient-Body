@@ -369,6 +369,11 @@
             customColors.forEach((input) => colors.push(input.value));
           }
 
+          if (colors.length === 0) {
+            alert("Please use the [Add Colors] button to enable custom gradient creation.");
+            return;
+          }
+
           const gradientModal = bootstrap.Modal.getInstance(document.getElementById("gradientModal"));
           // Reset the form
           document.getElementById("gradientForm").reset();
@@ -376,6 +381,7 @@
           document.getElementById("presetDarkColorList").classList.add("d-none");
           document.getElementById("presetLightColorList").classList.add("d-none");
           document.getElementById("customColorPicker").classList.add("d-none");
+          $("#colorInputs").empty();
           gradientModal.hide();
 
           const resultModal = new bootstrap.Modal(document.getElementById("showCodeModal"));
