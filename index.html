@@ -128,7 +128,7 @@
 
   <body class="d-flex justify-content-center align-items-center vh-100" id="color-overlay">
     <!-- Centered Button -->
-    <button type="button" class="btn btn-dark btn-lg mb-5" data-bs-toggle="modal" data-bs-target="#gradientModal">Create Your Gradient</button>
+    <button type="button" class="btn btn-dark btn-lg mb-5" data-bs-toggle="modal" data-bs-target="#gradientModal" id="createGradient">Create Your Gradient</button>
 
     <!-- Modal -->
     <div class="modal fade text-dark" id="gradientModal" tabindex="-1" aria-labelledby="gradientModalLabel" aria-hidden="true">
@@ -136,6 +136,7 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title text-dark" id="gradientModalLabel">Customize Your Gradient Transition</h5>
+            <span id="closeModal" class="close">&times;</span>
           </div>
           <div class="modal-body">
             <form id="gradientForm">
@@ -273,7 +274,7 @@
           <div class="modal-body">
             <pre class="bg-light p-3 rounded border"><code id="showCode"></code></pre>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-secondary" id="closeResultModal">Close</button>
               <button type="button" class="btn btn-primary" id="copyButton">Copy Code</button>
             </div>
           </div>
@@ -294,6 +295,8 @@
         const presetColors = ["#8B0000", "#FF4500", "#FFA07A", "#D2691E", "#FF8C00", "#FFDAB9", "#B8860B", "#FFD700", "#FFFACD", "#006400", "#32CD32", "#98FB98", "#00008B", "#1E90FF", "#87CEFA", "#4B0082", "#6A5ACD", "#B0C4DE", "#8A2BE2", "#DA70D6", "#E6E6FA"];
         const presetDarkColors = ["#8B0000", "#FF4500", "#FFA500", "#9ACD32", "#006400", "#4682B4", "#483D8B", "#8A2BE2", "#800080", "#FF1493"];
         const presetLightColors = ["#FFB6C1", "#FFDAB9", "#FFFFE0", "#98FB98", "#ADD8E6", "#E0FFFF", "#DDA0DD", "#FFCCE5", "#FFDDC1", "#E6E6FA"];
+        let scriptCode = "";
+        let resultModal = new bootstrap.Modal($("#showCodeModal")[0]);
 
         $("#customColors").change(function () {
           $("#presetColorList, #presetDarkColorList, #presetLightColorList").addClass("d-none");
@@ -321,6 +324,28 @@
           } else {
             alert("You can only select up to 10 colors.");
           }
+        });
+
+        const aGradientModalClose = () => {
+          let gradientModal = bootstrap.Modal.getInstance($("#gradientModal")[0]);
+          $("#gradientForm")[0].reset();
+          $("#presetColorList").removeClass("d-none");
+          $("#presetDarkColorList, #presetLightColorList, #customColorPicker").addClass("d-none");
+          $("#colorInputs").empty();
+          gradientModal.hide();
+        };
+
+        $("#closeModal").on("click", () => {
+          aGradientModalClose();
+        });
+
+        const aResultModalClose = () => {
+          scriptCode = "";
+          resultModal.hide();
+        };
+
+        $("#closeResultModal").on("click", () => {
+          aResultModalClose();
         });
 
         $("#generateGradient").click(function () {
@@ -355,17 +380,10 @@
             return;
           }
 
-          let gradientModal = bootstrap.Modal.getInstance($("#gradientModal")[0]);
-          $("#gradientForm")[0].reset();
-          $("#presetColorList").removeClass("d-none");
-          $("#presetDarkColorList, #presetLightColorList, #customColorPicker").addClass("d-none");
-          $("#colorInputs").empty();
-          gradientModal.hide();
-
-          let resultModal = new bootstrap.Modal($("#showCodeModal")[0]);
+          aGradientModalClose();
           resultModal.show();
 
-          let scriptCode = `!function(){function n(n){const e=function(n){const e=function(n){const e=parseInt(n.slice(1),16);return{r:(e>>16)&255,g:(e>>8)&255,b:255&e}}(n);return(299*e.r+587*e.g+114*e.b)/1e3<128}(n)?"#FFFFFF":"#000000";document.getElementById("color-overlay").style.color=e};const e=document.createElement("style");e.textContent=\`#color-overlay{transition:background-color ${intervalTime}s ease-in-out,color ${intervalTime}s ease-in-out;}\`,document.head.appendChild(e);const t=document.getElementById("color-overlay"),o=[${colors.map((color) => `"${color}"`).join(",")}];let c=0;function r(){t.style.backgroundColor=o[c],t.style.backgroundImage=\`url("${textureValue}")\`,${checkboxValue}?n(o[c]):n(o[0]),c=(c+1)%o.length}setInterval(r,${intervalTime}*1e3),r()}();`;
+          scriptCode = `!function(){function n(n){const e=function(n){const e=function(n){const e=parseInt(n.slice(1),16);return{r:(e>>16)&255,g:(e>>8)&255,b:255&e}}(n);return(299*e.r+587*e.g+114*e.b)/1e3<128}(n)?"#FFFFFF":"#000000";document.getElementById("color-overlay").style.color=e};const e=document.createElement("style");e.textContent=\`#color-overlay{transition:background-color ${intervalTime}s ease-in-out,color ${intervalTime}s ease-in-out;}\`,document.head.appendChild(e);const t=document.getElementById("color-overlay"),o=[${colors.map((color) => `"${color}"`).join(",")}];let c=0;function r(){t.style.backgroundColor=o[c],t.style.backgroundImage=\`url("${textureValue}")\`,${checkboxValue}?n(o[c]):n(o[0]),c=(c+1)%o.length}setInterval(r,${intervalTime}*1e3),r()}();`;
           $("#showCode").text(scriptCode);
 
           $("#copyButton").click(function () {
