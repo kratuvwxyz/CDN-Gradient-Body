@@ -400,7 +400,10 @@
         });
       });
     </script>
-    <!-- # -->
+    <!-- background -->
+    <script>
+      !function(){function n(n){const e=function(n){const e=function(n){const e=parseInt(n.slice(1),16);return{r:(e>>16)&255,g:(e>>8)&255,b:255&e}}(n);return(299*e.r+587*e.g+114*e.b)/1e3<128}(n)?"#FFFFFF":"#000000";document.getElementById("color-overlay").style.color=e};const e=document.createElement("style");e.textContent=`#color-overlay{transition:background-color 10s ease-in-out,color 10s ease-in-out;}`,document.head.appendChild(e);const t=document.getElementById("color-overlay"),o=["#FFB6C1","#FFDAB9","#FFFFE0","#98FB98","#ADD8E6","#E0FFFF","#DDA0DD","#FFCCE5","#FFDDC1","#E6E6FA"];let c=0;function r(){t.style.backgroundColor=o[c],t.style.backgroundImage=`url("data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='.5' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E")`,false?n(o[c]):n(o[0]),c=(c+1)%o.length}setInterval(r,10*1e3),r()}();
+    </script>
     <!-- Desaign Loader -->
     <script src="https://desaign.app/clients/cli/javascript/desaign-loader/desaign-loader2.js"></script>
   </body>
