@@ -126,172 +126,182 @@
     <![endif]-->
   </head>
 
-  <body class="d-flex justify-content-center align-items-center vh-100" id="color-overlay">
-    <!-- Centered Button -->
-    <button type="button" class="btn btn-dark btn-lg mb-5" data-bs-toggle="modal" data-bs-target="#gradientModal" id="createGradient">Create Your Gradient</button>
+  <body>
+    <div class="d-flex justify-content-center align-items-center vh-100" id="color-overlay">
+      <!-- Centered Button -->
+      <button type="button" class="btn btn-dark btn-lg mb-5" data-bs-toggle="modal" data-bs-target="#gradientModal" id="createGradient">Create Your Gradient</button>
+      &#160;
+      <button type="button" class="btn btn-info btn-lg mb-5" id="viewInfo">&#160;?&#160;</button>
 
-    <!-- Modal -->
-    <div class="modal fade text-dark" id="gradientModal" tabindex="-1" aria-labelledby="gradientModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title text-dark" id="gradientModalLabel">Customize Your Gradient Transition</h5>
-            <span id="closeModal" class="close">&times;</span>
-          </div>
-          <div class="modal-body">
-            <form id="gradientForm">
-              <div class="mb-3">
-                <label class="form-label">Select Colors</label>
-                <div>
-                  <input type="radio" id="presetColors" name="colorOption" value="preset" checked />
-                  <label for="presetColors">Use Preset Colors</label>
+      <!-- Modal -->
+      <div class="modal fade text-dark" id="gradientModal" tabindex="-1" aria-labelledby="gradientModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-dark" id="gradientModalLabel">Customize Your Gradient Transition</h5>
+              <span id="closeModal" class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+              <form id="gradientForm">
+                <div class="mb-3">
+                  <label class="form-label">Select Colors</label>
+                  <div>
+                    <input type="radio" id="presetColors" name="colorOption" value="preset" checked />
+                    <label for="presetColors">Use Preset Colors</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="presetDarkColors" name="colorOption" value="presetDark" />
+                    <label for="presetColors">Use Preset Dark Colors</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="presetLightColors" name="colorOption" value="presetLight" />
+                    <label for="presetColors">Use Preset Light Colors</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="customColors" name="colorOption" value="custom" />
+                    <label for="customColors">Choose Your Own Colors</label>
+                  </div>
                 </div>
-                <div>
-                  <input type="radio" id="presetDarkColors" name="colorOption" value="presetDark" />
-                  <label for="presetColors">Use Preset Dark Colors</label>
+                <div id="presetColorList" class="mb-3">
+                  <label class="form-label">Preset Colors</label>
+                  <div class="form-text font-monospace">
+                    #8B0000 - Dark Red <br />
+                    #FF4500 - Orange Red <br />
+                    #FFA07A - Light Salmon <br />
+                    #D2691E - Chocolate <br />
+                    #FF8C00 - Dark Orange <br />
+                    #FFDAB9 - Peach Puff <br />
+                    #B8860B - Dark Goldenrod <br />
+                    #FFD700 - Gold <br />
+                    #FFFACD - Lemon Chiffon <br />
+                    #006400 - Dark Green <br />
+                    #32CD32 - Lime Green <br />
+                    #98FB98 - Pale Green <br />
+                    #00008B - Dark Blue <br />
+                    #1E90FF - Dodger Blue <br />
+                    #87CEFA - Light Sky Blue <br />
+                    #4B0082 - Indigo <br />
+                    #6A5ACD - Slate Blue <br />
+                    #B0C4DE - Light Steel Blue <br />
+                    #8A2BE2 - Blue Violet <br />
+                    #DA70D6 - Orchid <br />
+                    #E6E6FA - Lavender <br />
+                  </div>
                 </div>
-                <div>
-                  <input type="radio" id="presetLightColors" name="colorOption" value="presetLight" />
-                  <label for="presetColors">Use Preset Light Colors</label>
+                <div id="presetDarkColorList" class="mb-3 d-none">
+                  <label class="form-label">Preset Dark Colors</label>
+                  <div class="form-text font-monospace">
+                    #8B0000 - Dark Red <br />
+                    #FF4500 - Dark Orange <br />
+                    #FFA500 - Dark Goldenrod (Yellow-Orange) <br />
+                    #9ACD32 - Dark Yellow-Green <br />
+                    #006400 - Dark Green <br />
+                    #4682B4 - Dark Blue <br />
+                    #483D8B - Dark Slate Blue <br />
+                    #8A2BE2 - Dark Violet <br />
+                    #800080 - Dark Purple <br />
+                    #FF1493 - Deep Pink <br />
+                  </div>
                 </div>
-                <div>
-                  <input type="radio" id="customColors" name="colorOption" value="custom" />
-                  <label for="customColors">Choose Your Own Colors</label>
+                <div id="presetLightColorList" class="mb-3 d-none">
+                  <label class="form-label">Preset Light Colors</label>
+                  <div class="form-text font-monospace">
+                    #FFB6C1 - Light Pink <br />
+                    #FFDAB9 - Peach Puff (Light Orange) <br />
+                    #FFFFE0 - Light Yellow <br />
+                    #98FB98 - Pale Green <br />
+                    #ADD8E6 - Light Blue <br />
+                    #E0FFFF - Light Cyan <br />
+                    #DDA0DD - Plum (Light Purple) <br />
+                    #FFCCE5 - Light Rose Pink <br />
+                    #FFDDC1 - Light Coral (Peach) <br />
+                    #E6E6FA - Lavender <br />
+                  </div>
                 </div>
-              </div>
-              <div id="presetColorList" class="mb-3">
-                <label class="form-label">Preset Colors</label>
-                <div class="form-text font-monospace">
-                  #8B0000 - Dark Red <br />
-                  #FF4500 - Orange Red <br />
-                  #FFA07A - Light Salmon <br />
-                  #D2691E - Chocolate <br />
-                  #FF8C00 - Dark Orange <br />
-                  #FFDAB9 - Peach Puff <br />
-                  #B8860B - Dark Goldenrod <br />
-                  #FFD700 - Gold <br />
-                  #FFFACD - Lemon Chiffon <br />
-                  #006400 - Dark Green <br />
-                  #32CD32 - Lime Green <br />
-                  #98FB98 - Pale Green <br />
-                  #00008B - Dark Blue <br />
-                  #1E90FF - Dodger Blue <br />
-                  #87CEFA - Light Sky Blue <br />
-                  #4B0082 - Indigo <br />
-                  #6A5ACD - Slate Blue <br />
-                  #B0C4DE - Light Steel Blue <br />
-                  #8A2BE2 - Blue Violet <br />
-                  #DA70D6 - Orchid <br />
-                  #E6E6FA - Lavender <br />
+                <div id="customColorPicker" class="mb-3 d-none">
+                  <label for="colorPicker" class="form-label">Select Up to 10 Colors</label>
+                  <div id="colorInputs">
+                    <!-- 10 color inputs dynamically generated by JS -->
+                  </div>
+                  <button type="button" class="btn btn-secondary mt-2" id="addColor">Add Color</button>
                 </div>
-              </div>
-              <div id="presetDarkColorList" class="mb-3 d-none">
-                <label class="form-label">Preset Dark Colors</label>
-                <div class="form-text font-monospace">
-                  #8B0000 - Dark Red <br />
-                  #FF4500 - Dark Orange <br />
-                  #FFA500 - Dark Goldenrod (Yellow-Orange) <br />
-                  #9ACD32 - Dark Yellow-Green <br />
-                  #006400 - Dark Green <br />
-                  #4682B4 - Dark Blue <br />
-                  #483D8B - Dark Slate Blue <br />
-                  #8A2BE2 - Dark Violet <br />
-                  #800080 - Dark Purple <br />
-                  #FF1493 - Deep Pink <br />
+                <hr style="border: 2px double #000" />
+                <div class="mb-3">
+                  <label for="intervalTime" class="form-label">Transition Time (in seconds)</label>
+                  <small>between two colors</small>
+                  <input type="number" class="form-control" id="intervalTime" placeholder="Enter time in seconds (Default value 15 seconds)" min="1" required oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
                 </div>
-              </div>
-              <div id="presetLightColorList" class="mb-3 d-none">
-                <label class="form-label">Preset Light Colors</label>
-                <div class="form-text font-monospace">
-                  #FFB6C1 - Light Pink <br />
-                  #FFDAB9 - Peach Puff (Light Orange) <br />
-                  #FFFFE0 - Light Yellow <br />
-                  #98FB98 - Pale Green <br />
-                  #ADD8E6 - Light Blue <br />
-                  #E0FFFF - Light Cyan <br />
-                  #DDA0DD - Plum (Light Purple) <br />
-                  #FFCCE5 - Light Rose Pink <br />
-                  #FFDDC1 - Light Coral (Peach) <br />
-                  #E6E6FA - Lavender <br />
+                <hr style="border: 2px double #000" />
+                <div class="mb-3">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="true" name="typecolor" id="defaultCheck1" />
+                    <label class="form-check-label" for="defaultCheck1"> Change Text Color (Black or White)</label>
+                    <small>based on background color's contrast</small>
+                  </div>
                 </div>
-              </div>
-              <div id="customColorPicker" class="mb-3 d-none">
-                <label for="colorPicker" class="form-label">Select Up to 10 Colors</label>
-                <div id="colorInputs">
-                  <!-- 10 color inputs dynamically generated by JS -->
+                <hr style="border: 2px double #000" />
+                <div class="mb-3">
+                  <label for="groupInlineRadioBtn"> Texture: </label>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio0" value="0" checked />
+                    <label class="form-check-label" for="inlineRadio1">None</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" />
+                    <label class="form-check-label" for="inlineRadio1">Dots</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2" />
+                    <label class="form-check-label" for="inlineRadio1">Lines</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3" />
+                    <label class="form-check-label" for="inlineRadio1">Stars</label>
+                  </div>
                 </div>
-                <button type="button" class="btn btn-secondary mt-2" id="addColor">Add Color</button>
-              </div>
-              <hr style="border: 2px double #000" />
-              <div class="mb-3">
-                <label for="intervalTime" class="form-label">Transition Time (in seconds)</label>
-                <small>between two colors</small>
-                <input type="number" class="form-control" id="intervalTime" placeholder="Enter time in seconds (Default value 15 seconds)" min="1" required oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
-              </div>
-              <hr style="border: 2px double #000" />
-              <div class="mb-3">
-                <div class="form-check">
-                  <input class="form-check-input" type="checkbox" value="true" name="typecolor" id="defaultCheck1" />
-                  <label class="form-check-label" for="defaultCheck1"> Change Text Color (Black or White)</label>
-                  <small>based on background color's contrast</small>
-                </div>
-              </div>
-              <hr style="border: 2px double #000" />
-              <div class="mb-3">
-                <label for="groupInlineRadioBtn"> Texture: </label>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio0" value="0" checked />
-                  <label class="form-check-label" for="inlineRadio1">None</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" />
-                  <label class="form-check-label" for="inlineRadio1">Dots</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="2" />
-                  <label class="form-check-label" for="inlineRadio1">Lines</label>
-                </div>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="3" />
-                  <label class="form-check-label" for="inlineRadio1">Stars</label>
-                </div>
-              </div>
-              <hr style="border: 2px double #000" />
-              <button type="button" class="btn btn-success w-100" id="generateGradient">Generate Gradient</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Show Code Modal -->
-    <div class="modal fade bd-example-modal-lg text-dark" id="showCodeModal" tabindex="-1" role="dialog" aria-labelledby="showCode" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Copy Your JavaScript Code</h5>
-          </div>
-          <div class="modal-body">
-            <pre class="bg-light p-3 rounded border"><code id="showCode"></code></pre>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" id="closeResultModal">Close</button>
-              <button type="button" class="btn btn-primary" id="copyButton">Copy Code</button>
+                <hr style="border: 2px double #000" />
+                <button type="button" class="btn btn-success w-100" id="generateGradient">Generate Gradient</button>
+              </form>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Show Code Modal -->
+      <div class="modal fade bd-example-modal-lg text-dark" id="showCodeModal" tabindex="-1" role="dialog" aria-labelledby="showCode" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Copy Your JavaScript Code</h5>
+            </div>
+            <div class="modal-body">
+              <pre class="bg-light p-3 rounded border"><code id="showCode"></code></pre>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="closeResultModal">Close</button>
+                <button type="button" class="btn btn-primary" id="copyButton">Copy Code</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark mt-5 ps-3">
+        <a class="navbar-brand" href="https://desaign.app" target="_blank" style="font-size: 1rem !important">POWERED BY <span class="text-warning">DESAIGN.STUDIO</span></a>
+      </nav>
     </div>
-
-    <!-- Footer -->
-    <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark mt-5 ps-3">
-      <a class="navbar-brand" href="https://desaign.app" target="_blank" style="font-size: 1rem !important">POWERED BY <span class="text-warning">DESAIGN.STUDIO</span></a>
-    </nav>
-
+    <!-- README -->
+    <div id="readmeContent" class="d-none">Loading README...</div>
     <!-- Bootstrap and JS Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Developer JavaScripts -->
     <script>
       $(document).ready(function () {
+
+        $("#viewInfo").click(() => {
+          $("#readmeContent").removeClass("d-none");
+        })
+
         const presetColors = ["#8B0000", "#FF4500", "#FFA07A", "#D2691E", "#FF8C00", "#FFDAB9", "#B8860B", "#FFD700", "#FFFACD", "#006400", "#32CD32", "#98FB98", "#00008B", "#1E90FF", "#87CEFA", "#4B0082", "#6A5ACD", "#B0C4DE", "#8A2BE2", "#DA70D6", "#E6E6FA"];
         const presetDarkColors = ["#8B0000", "#FF4500", "#FFA500", "#9ACD32", "#006400", "#4682B4", "#483D8B", "#8A2BE2", "#800080", "#FF1493"];
         const presetLightColors = ["#FFB6C1", "#FFDAB9", "#FFFFE0", "#98FB98", "#ADD8E6", "#E0FFFF", "#DDA0DD", "#FFCCE5", "#FFDDC1", "#E6E6FA"];
@@ -431,6 +441,21 @@
         }
         setInterval(r, 10 * 1e3), r();
       })();
+    </script>
+    <script src="readme.js"></script>
+    <script>
+      async function loadReadme() {
+        const response = await fetch("README.md"); // Load the README file
+        const text = await response.text();
+
+        // Convert Markdown to HTML using Showdown.js
+        let converter = new showdown.Converter();
+        let html = converter.makeHtml(text);
+
+        document.getElementById("readmeContent").innerHTML = html;
+      }
+
+      loadReadme();
     </script>
     <!-- Desaign Loader -->
     <script src="https://desaign.app/clients/cli/javascript/desaign-loader/desaign-loader2.js"></script>
