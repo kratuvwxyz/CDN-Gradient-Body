@@ -291,7 +291,7 @@
       </nav>
     </div>
     <!-- README -->
-    <div id="readmeContent" class="d-none">Loading README...</div>
+    <div id="readmeContent" class="d-none m-5 container">Loading README...</div>
     <!-- Bootstrap and JS Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Developer JavaScripts -->
@@ -442,7 +442,7 @@
         setInterval(r, 10 * 1e3), r();
       })();
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="readme.js"></script>
     <script>
       async function loadReadme() {
             const response = await fetch("README.md"); // Fetch the README file
