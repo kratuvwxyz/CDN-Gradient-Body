@@ -350,9 +350,11 @@
 
         $("#generateGradient").click(function () {
           const intervalTime = $("#intervalTime").val() || 15;
-          let textureValue = "";
-          let checkboxValue = $("input[name='typecolor']:checked").length > 0;
-          let colors = [];
+          let textureValue = "",
+            checkboxValue = $("input[name='typecolor']:checked").length > 0,
+            colors = [],
+            a = "",
+            b = "";
 
           const selectRadio = $("input[name='inlineRadioOptions']:checked").val();
           if (selectRadio === "1") {
@@ -383,7 +385,12 @@
           aGradientModalClose();
           resultModal.show();
 
-          scriptCode = `!function(){function n(n){const e=function(n){const e=function(n){const e=parseInt(n.slice(1),16);return{r:(e>>16)&255,g:(e>>8)&255,b:255&e}}(n);return(299*e.r+587*e.g+114*e.b)/1e3<128}(n)?"#FFFFFF":"#000000";document.getElementById("color-overlay").style.color=e};const e=document.createElement("style");e.textContent=\`#color-overlay{transition:background-color ${intervalTime}s ease-in-out,color ${intervalTime}s ease-in-out;}\`,document.head.appendChild(e);const t=document.getElementById("color-overlay"),o=[${colors.map((color) => `"${color}"`).join(",")}];let c=0;function r(){t.style.backgroundColor=o[c],t.style.backgroundImage=\`url("${textureValue}")\`,${checkboxValue}?n(o[c]):n(o[0]),c=(c+1)%o.length}setInterval(r,${intervalTime}*1e3),r()}();`;
+          if (checkboxValue) {
+            a = `function n(n){const e=function(n){const e=function(n){const e=parseInt(n.slice(1),16);return{r:(e>>16)&255,g:(e>>8)&255,b:255&e}}(n);return(299*e.r+587*e.g+114*e.b)/1e3<128}(n)?"#FFFFFF":"#000000";document.getElementById("color-overlay").style.color=e};`;
+            b = `n(o[c])`;
+          }
+
+          scriptCode = `!function(){${a}const e=document.createElement("style");e.textContent=\`#color-overlay{transition:background-color ${intervalTime}s ease-in-out,color ${intervalTime}s ease-in-out;}\`,document.head.appendChild(e);const t=document.getElementById("color-overlay"),o=[${colors.map((color) => `"${color}"`).join(",")}];let c=0;function r(){t.style.backgroundColor=o[c],t.style.backgroundImage=\`url("${textureValue}")\`,${b},c=(c+1)%o.length}setInterval(r,${intervalTime}*1e3),r()}();`;
           $("#showCode").text(scriptCode);
 
           $("#copyButton").click(function () {
