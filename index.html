@@ -442,20 +442,17 @@
         setInterval(r, 10 * 1e3), r();
       })();
     </script>
-    <script src="readme.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
       async function loadReadme() {
-        const response = await fetch("README.md"); // Load the README file
-        const text = await response.text();
+            const response = await fetch("README.md"); // Fetch the README file
+            const text = await response.text();
 
-        // Convert Markdown to HTML using Showdown.js
-        let converter = new showdown.Converter();
-        let html = converter.makeHtml(text);
+            // Convert Markdown to HTML using Marked.js
+            document.getElementById("readmeContent").innerHTML = marked.parse(text);
+        }
 
-        document.getElementById("readmeContent").innerHTML = html;
-      }
-
-      loadReadme();
+        loadReadme();
     </script>
     <!-- Desaign Loader -->
     <script src="https://desaign.app/clients/cli/javascript/desaign-loader/desaign-loader2.js"></script>
