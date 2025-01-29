@@ -291,7 +291,7 @@
       </nav>
     </div>
     <!-- README -->
-    <div class="container p-5" id="start">
+    <div class="container p-5 d-none" id="start">
       <div class="row border border-dark p-5">
           <div class="col-lg-2 d-none d-lg-block">
               <p>&#160;</p>
@@ -310,7 +310,7 @@
     <script>
       $(document).ready(function () {
         $("#viewInfo").click(() => {
-          $("#readmeContent").removeClass("d-none");
+          $("#start").removeClass("d-none");
           document.getElementById("start").scrollIntoView({ behavior: "smooth" });
         });
 
