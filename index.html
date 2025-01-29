@@ -291,16 +291,19 @@
       </nav>
     </div>
     <!-- README -->
-    <div id="readmeContent" class="d-none m-5 container">Loading README...</div>
+    <div class="container">
+      <div class="row p-5">
+        <div class="col" id="readmeContent">Loading README...</div>
+      </div>
+    </div>
     <!-- Bootstrap and JS Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- Developer JavaScripts -->
     <script>
       $(document).ready(function () {
-
         $("#viewInfo").click(() => {
           $("#readmeContent").removeClass("d-none");
-        })
+        });
 
         const presetColors = ["#8B0000", "#FF4500", "#FFA07A", "#D2691E", "#FF8C00", "#FFDAB9", "#B8860B", "#FFD700", "#FFFACD", "#006400", "#32CD32", "#98FB98", "#00008B", "#1E90FF", "#87CEFA", "#4B0082", "#6A5ACD", "#B0C4DE", "#8A2BE2", "#DA70D6", "#E6E6FA"];
         const presetDarkColors = ["#8B0000", "#FF4500", "#FFA500", "#9ACD32", "#006400", "#4682B4", "#483D8B", "#8A2BE2", "#800080", "#FF1493"];
@@ -445,14 +448,14 @@
     <script src="readme.js"></script>
     <script>
       async function loadReadme() {
-            const response = await fetch("README.md"); // Fetch the README file
-            const text = await response.text();
+        const response = await fetch("README.md"); // Fetch the README file
+        const text = await response.text();
 
-            // Convert Markdown to HTML using Marked.js
-            document.getElementById("readmeContent").innerHTML = marked.parse(text);
-        }
+        // Convert Markdown to HTML using Marked.js
+        document.getElementById("readmeContent").innerHTML = marked.parse(text);
+      }
 
-        loadReadme();
+      loadReadme();
     </script>
     <!-- Desaign Loader -->
     <script src="https://desaign.app/clients/cli/javascript/desaign-loader/desaign-loader2.js"></script>
