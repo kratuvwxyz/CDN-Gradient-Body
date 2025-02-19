@@ -293,142 +293,25 @@
     <!-- README -->
     <div class="container p-5 d-none" id="start">
       <div class="row border border-dark p-5">
-          <div class="col-lg-2 d-none d-lg-block">
-              <p>&#160;</p>
-          </div>
-          <div class="col-12 col-lg-8 bg-light p-4">
-              <div class="col" id="readmeContent">Loading README...</div>
-          </div>
-          <div class="col-lg-2 d-none d-lg-block">
-              <p>&#160;</p>
-          </div>
+        <div class="col-lg-2 d-none d-lg-block">
+          <p>&#160;</p>
+        </div>
+        <div class="col-12 col-lg-8 bg-light p-4">
+          <div class="col" id="readmeContent">Loading README...</div>
+        </div>
+        <div class="col-lg-2 d-none d-lg-block">
+          <p>&#160;</p>
+        </div>
       </div>
-  </div>
+    </div>
+
     <!-- Bootstrap and JS Dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+
     <!-- Developer JavaScripts -->
-    <script>
-      $(document).ready(function () {
-        $("#viewInfo").click(() => {
-          $("#start").removeClass("d-none");
-          document.getElementById("start").scrollIntoView({ behavior: "smooth" });
-        });
+    <script src="script2-min.js"></script>
 
-        const presetColors = ["#8B0000", "#FF4500", "#FFA07A", "#D2691E", "#FF8C00", "#FFDAB9", "#B8860B", "#FFD700", "#FFFACD", "#006400", "#32CD32", "#98FB98", "#00008B", "#1E90FF", "#87CEFA", "#4B0082", "#6A5ACD", "#B0C4DE", "#8A2BE2", "#DA70D6", "#E6E6FA"];
-        const presetDarkColors = ["#8B0000", "#FF4500", "#FFA500", "#9ACD32", "#006400", "#4682B4", "#483D8B", "#8A2BE2", "#800080", "#FF1493"];
-        const presetLightColors = ["#FFB6C1", "#FFDAB9", "#FFFFE0", "#98FB98", "#ADD8E6", "#E0FFFF", "#DDA0DD", "#FFCCE5", "#FFDDC1", "#E6E6FA"];
-        let scriptCode = "";
-        let resultModal = new bootstrap.Modal($("#showCodeModal")[0]);
-
-        $("#customColors").change(function () {
-          $("#presetColorList, #presetDarkColorList, #presetLightColorList").addClass("d-none");
-          $("#customColorPicker").removeClass("d-none");
-        });
-
-        $("#presetColors").change(function () {
-          $("#presetColorList").removeClass("d-none");
-          $("#presetDarkColorList, #presetLightColorList, #customColorPicker").addClass("d-none");
-        });
-
-        $("#presetDarkColors").change(function () {
-          $("#presetColorList, #presetLightColorList, #customColorPicker").addClass("d-none");
-          $("#presetDarkColorList").removeClass("d-none");
-        });
-
-        $("#presetLightColors").change(function () {
-          $("#presetColorList, #presetDarkColorList, #customColorPicker").addClass("d-none");
-          $("#presetLightColorList").removeClass("d-none");
-        });
-
-        $("#addColor").click(function () {
-          if ($("#colorInputs").children().length < 10) {
-            $("#colorInputs").append('<input type="color" class="form-control mb-2">');
-          } else {
-            alert("You can only select up to 10 colors.");
-          }
-        });
-
-        const aGradientModalClose = () => {
-          let gradientModal = bootstrap.Modal.getInstance($("#gradientModal")[0]);
-          $("#gradientForm")[0].reset();
-          $("#presetColorList").removeClass("d-none");
-          $("#presetDarkColorList, #presetLightColorList, #customColorPicker").addClass("d-none");
-          $("#colorInputs").empty();
-          gradientModal.hide();
-        };
-
-        $("#closeModal").on("click", () => {
-          aGradientModalClose();
-        });
-
-        const aResultModalClose = () => {
-          scriptCode = "";
-          resultModal.hide();
-        };
-
-        $("#closeResultModal").on("click", () => {
-          aResultModalClose();
-        });
-
-        $("#generateGradient").click(function () {
-          const intervalTime = $("#intervalTime").val() || 15;
-          let textureValue = "",
-            checkboxValue = $("input[name='typecolor']:checked").length > 0,
-            colors = [],
-            a = "",
-            b = "";
-
-          const selectRadio = $("input[name='inlineRadioOptions']:checked").val();
-          if (selectRadio === "1") {
-            textureValue = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%23000000' fill-opacity='0.5' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E";
-          } else if (selectRadio === "2") {
-            textureValue = "data:image/svg+xml,%3Csvg width='6' height='6' viewBox='0 0 6 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23000000' fill-opacity='.5' fill-rule='evenodd'%3E%3Cpath d='M5 0h1L0 6V5zM6 5v1H5z'/%3E%3C/g%3E%3C/svg%3E";
-          } else if (selectRadio === "3") {
-            textureValue = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='%23000000' fill-opacity='.25'%3E%3Cpolygon fill-rule='evenodd' points='8 4 12 6 8 8 6 12 4 8 0 6 4 4 6 0 8 4'/%3E%3C/g%3E%3C/svg%3E";
-          }
-
-          if ($("#presetColors").is(":checked")) {
-            colors = presetColors;
-          } else if ($("#presetDarkColors").is(":checked")) {
-            colors = presetDarkColors;
-          } else if ($("#presetLightColors").is(":checked")) {
-            colors = presetLightColors;
-          } else {
-            $("#colorInputs input[type='color']").each(function () {
-              colors.push($(this).val());
-            });
-          }
-
-          if (colors.length === 0) {
-            alert("Please use the [Add Colors] button to enable custom gradient creation.");
-            return;
-          }
-
-          aGradientModalClose();
-          resultModal.show();
-
-          if (checkboxValue) {
-            a = `function n(n){const e=function(n){const e=function(n){const e=parseInt(n.slice(1),16);return{r:(e>>16)&255,g:(e>>8)&255,b:255&e}}(n);return(299*e.r+587*e.g+114*e.b)/1e3<128}(n)?"#FFFFFF":"#000000";document.getElementById("color-overlay").style.color=e};`;
-            b = `n(o[c])`;
-          }
-
-          scriptCode = `!function(){${a}const e=document.createElement("style");e.textContent=\`#color-overlay{transition:background-color ${intervalTime}s ease-in-out,color ${intervalTime}s ease-in-out;}\`,document.head.appendChild(e);const t=document.getElementById("color-overlay"),o=[${colors.map((color) => `"${color}"`).join(",")}];let c=0;function r(){t.style.backgroundColor=o[c],t.style.backgroundImage=\`url("${textureValue}")\`,${b},c=(c+1)%o.length}setInterval(r,${intervalTime}*1e3),r()}();`;
-          $("#showCode").text(scriptCode);
-
-          $("#copyButton").click(function () {
-            navigator.clipboard
-              .writeText(scriptCode)
-              .then(() => {
-                $("#copyButton").text("Code Copied").css({ backgroundColor: "#00ff00", color: "#000000" });
-              })
-              .catch(() => {
-                $("#copyButton").text("Failed To Copy").css({ backgroundColor: "#ff0000", color: "#ffffff" });
-              });
-          });
-        });
-      });
-    </script>
-    <!-- background -->
+    <!-- Gradient Background -->
     <script>
       !(function () {
         function n(n) {
@@ -454,6 +337,8 @@
         setInterval(r, 10 * 1e3), r();
       })();
     </script>
+
+    <!-- Load Read Me -->
     <script src="readme.js"></script>
     <script>
       async function loadReadme() {
@@ -466,7 +351,46 @@
 
       loadReadme();
     </script>
-    <!-- Desaign Loader -->
-    <script src="https://desaign.app/clients/cli/javascript/desaign-loader/desaign-loader2.js"></script>
+
+    <!-- New Console Signature -->
+    <script src="https://desaign.app/clients/cli/javascript/desaign-loader/SRd74YEKawZHgVMAcfQDT2zNp5J83jxu6hUk9nGCqvFPsytm.js"></script>
+
+    <!-- New Desaign Loader runs only first time -->
+    <script src="https://desaign.app/clients/cli/javascript/desaign-loader/BzGVsfSb28ADNU3pJEhaM6dxku9tcRZQ7em54HgKCnPTwXjq.js"></script>
   </body>
+
+  <!--#
+        ╥╥  DESIGNED AND DEVELOPED BY...
+        ║║ 
+        ║║ ╓╓──╖╖ ╓╓──── ────╖╖ ╓╖ ╓╓──╖╖ ╓╓──╖╖ TM
+        ║║ ║║  ║║ ║║         ║║ ╙╜ ║║  ║║ ║║  ║║
+    ╓╓──╫╫ ╫╫──╜╜ ╙╙──╖╖ ╓╓──╫╫ ╖╖ ║║  ║║ ║║  ║║
+    ║║  ║║ ║║         ║║ ║║  ║║ ║║ ║║  ║║ ║║  ║║
+    ║║  ║║ ║║         ║║ ║║  ║║ ║║ ║║  ║║ ║║  ║║
+    ║║  ║║ ╙╙──── ────╜╜ ╙╙──╜╜ ║║ ╙╙──╫╫ ╜╜  ║║
+    ║║  ║║  ┍━╸╺┯╸╷ ╷┎─╮ ┰ ╭─╮  ║║     ║║     ╙╙ LLC
+    ╙╙──╜╜  ┕━┑ │ │ │┃ │ ┃ │ │  ╙╙─ ───╜╜
+            ╺━┙ ╵ ╰─╯┖─╯ ┸ ╰─╯
+            Copyright © 2011-2025
+        	  ALL RIGHTS RESERVED
+            ---
+            Site: http://DESAIGN.STUDIO
+            Call: 1-860-DESAIGN (337 2446)
+            Mail: MEET@DESAIGN.STUDIO
+            Post: PO BOX 200001, AUSTIN TX 78720
+            ---
+            Book an appointment with us at
+            https://calendly.com/desaignstudio
+            ---
+            Follow us: #desaignstudio
+            ---
+            Kratu Desai (Dreamer-in-Chief)
+            MAIL@THEGENIUS.ONE
+            https://THEGENIUS.ONE
+            
+            https://github.com/kratuvwxyz
+            ---
+            Our Mantra: 
+            Chase Perfection to Catch Excellence.
+  #-->
 </html>
