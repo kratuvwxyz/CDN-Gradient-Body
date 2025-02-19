@@ -34,3 +34,6 @@ dictionary.md
 *.css.map
 *.sass.map
 *.scss.map
+
+# Files
+script2.js
